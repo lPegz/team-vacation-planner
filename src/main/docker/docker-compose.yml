@@ -1,0 +1,14 @@
+version: '2'
+services:
+  bs-consortium-mysqldb:
+    extends:
+      file: mysql.yml
+      service: bs-consortium-mysqldb
+  bs-consortium-app:
+    build: .
+    ports:
+    - "8001:8080"
+    links:
+    - bs-consortium-mysqldb:localhost
+  redis:
+    image: redis
