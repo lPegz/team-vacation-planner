@@ -15,10 +15,57 @@
     <div class="container">
         <h1>Team Vacation Planner</h1>
         <div ng-controller="home" ng-cloak class="ng-cloak">
-            <p>The ID is {{greeting.ID}}</p>
-            <p>The content is {{greeting.content}}</p>
+            <p>Please start by creating your team</p>
+            <div class="input-group">
+                <span class="input-group-addon" id="name-of-team">@</span>
+                <input class="form-control" placeholder="Team name" aria-describedby="name-of-team">
+            </div>
+            <div class="input-group">
+                <input class="form-control" placeholder="Team Suffix" id="team-suffix" aria-describedby="basic-addon2">
+            </div>
         </div>
     </div>
+    <div class="container">
+        <h1>Members</h1>
+        <div ng-controller="home" ng-cloak class="ng-cloak">
+            <p>Add one member to get started or use import CSV</p>
+            <div class="input-group">
+                <span class="input-group-addon" id="member-uid">@</span>
+                <input class="form-control" placeholder="Email" aria-describedby="member-uid">
+            </div>
+            <div class="input-group">
+                <input class="form-control" placeholder="Member Full name" id="member-fullname">
+            </div>
+            <div class="input-group">
+                <input class="form-control" placeholder="Role" id="member-role">
+            </div>
+            <div class="input-group">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="checkbox" aria-label="...">
+                            </span>
+                            <input class="form-control" aria-label="...">
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="radio" aria-label="...">
+                          </span>
+                          <input type="text" class="form-control" aria-label="...">
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div>
+        </div>
+    </div>
+
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
