@@ -1,32 +1,18 @@
 package br.pegz.tvp.entity;
 
 import br.pegz.tvp.entity.enums.Status;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.Year;
 
-@Setter
-@Getter
+@Data
 public class Vacation {
-
     @Id
-    private String uid;
-    private LocalDateTime yearReference;
-    private Status vacationStatus;
-
-    public Vacation() {
-        //default for JPA
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("uid", uid)
-                .append("yearReference", yearReference)
-                .append("vacationStatus", vacationStatus)
-                .toString();
-    }
+    private final String uid;
+    private final Year yearReference;
+    private final Status vacationStatus;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 }

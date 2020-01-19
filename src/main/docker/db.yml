@@ -1,0 +1,8 @@
+version: '2'
+services:
+    db:
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: tvp_admin
+            MONGO_INITDB_ROOT_PASSWORD: greattvp

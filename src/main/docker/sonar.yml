@@ -1,6 +1,6 @@
 version: '2'
 services:
-    bookstore-sonar:
+    tvp-sonar:
         image: sonarqube:6.2-alpine
         ports:
             - 9000:9000

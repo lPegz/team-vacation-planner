@@ -1,14 +1,10 @@
 version: '2'
 services:
-  bs-consortium-mysqldb:
+  tvp-mongo:
     extends:
-      file: mysql.yml
-      service: bs-consortium-mysqldb
-  bs-consortium-app:
+      file: db.yml
+      service: db
+  tvp-app:
     build: .
     ports:
     - "8001:8080"
-    links:
-    - bs-consortium-mysqldb:localhost
-  redis:
-    image: redis
