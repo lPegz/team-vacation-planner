@@ -1,26 +1,23 @@
 package br.pegz.tvp.entity;
 
 import br.pegz.tvp.entity.enums.Impact;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Value;
 import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
-@Setter
-@Getter
+@Value
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class Member {
-
     @Id
-    private String uid;
-    private String name;
-    private String role;
-    private Impact impact;
-    private Set<Vacation> vacations;
-
-    public Member() {
-        //default for JPA
-    }
-
+    private final String uid;
+    private final String name;
+    private final String role;
+    private final Impact impact;
+    private final Set<Vacation> vacations;
 
 }

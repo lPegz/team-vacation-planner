@@ -1,13 +1,18 @@
 package br.pegz.tvp.entity;
 
 import br.pegz.tvp.entity.enums.Status;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Value;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.time.Year;
 
-@Data
+@Value
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class Vacation {
     @Id
     private final String uid;
