@@ -4,5 +4,12 @@ services:
         image: mongo
         restart: always
         environment:
-            MONGO_INITDB_ROOT_USERNAME: tvp_admin
-            MONGO_INITDB_ROOT_PASSWORD: greattvp
+          - MONGO_DATA_DIR=/data/db
+        ports:
+          - 27017:27017
+        networks:
+          localbridge:
+            aliases:
+              - mongo
+              - mongo.tvp.com
+              - mongo.dev.tvp.com

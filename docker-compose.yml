@@ -1,0 +1,27 @@
+version: '2'
+services:
+  tvp-mongo:
+    extends:
+      file: src/main/docker/db.yml
+      service: db
+    networks:
+      localbridge:
+        aliases:
+            - tvp-mongo
+            - tvp-mongo.tvp.com
+  tvp-app:
+    image: team-vacation-planner:latest
+    build: build/docker
+    depends_on:
+      - tvp-mongo
+    ports:
+    - "8001:8080"
+    networks:
+      localbridge:
+        aliases:
+          - app
+          - app.tvp.com
+
+networks:
+  localbridge:
+    driver: bridge
