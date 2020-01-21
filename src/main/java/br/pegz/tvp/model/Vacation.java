@@ -1,6 +1,6 @@
-package br.pegz.tvp.entity;
+package br.pegz.tvp.model;
 
-import br.pegz.tvp.entity.enums.Status;
+import br.pegz.tvp.model.enums.Status;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
