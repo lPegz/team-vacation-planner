@@ -15,6 +15,20 @@ configurations {
 	}
 }
 
+dockerCreateDockerfile {
+	instruction """
+		RUN mkdir /keys
+		RUN cd /keys
+		RUN openssl genrsa -out tvpPrivate.pem 4096
+		RUN openssl rsa -in tvpPrivate.pem -outform PEM -pubout -out tvpPublic.pem
+		RUN keytool -genkey -alias tvpks \\
+        -keyalg RSA -keystore /keys/tvpks \\
+        -dname "CN=Team Vacation Planner, OU=Management, O=Free, L=New York, S=NY, C=US" \\
+        -deststoretype pkcs12 \\
+        -storepass thatstheway -keypass thatstheway \\
+        -keysize 4096
+	"""
+}
 
 springBoot {
 	buildInfo {
@@ -58,6 +72,7 @@ docker {
 		baseImage = 'openjdk:11-jre-slim'
 		ports = [9090, 8080]
 		images = ['team-vacation-planner:0.0.1', 'team-vacation-planner:latest']
+
 		jvmArgs = ['-Dspring.profiles.active=container']
 	}
 }
