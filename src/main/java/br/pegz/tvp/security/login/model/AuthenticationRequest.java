@@ -6,5 +6,5 @@ import lombok.Value;
 public class AuthenticationRequest {
     String teamName;
     String memberUsername;
-    String passwordHash;
+    byte[] passwordHash;
 }

@@ -14,8 +14,8 @@ public class UserAccount implements UserDetails {
     private final String tenantId;
     private final String teamName;
     private final String username;
-    private final String password;
-    private final String passwordSalt;
+    private final byte[] password;
+    private final byte[] passwordSalt;
     private final String email;
     private final Set<Role> authorities;
     private final boolean accountNonExpired;

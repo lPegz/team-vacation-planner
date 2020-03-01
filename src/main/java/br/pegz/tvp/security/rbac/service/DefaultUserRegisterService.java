@@ -84,7 +84,8 @@ public class DefaultUserRegisterService implements UserRegisterService, UserLogi
         }
     }
 
-    private boolean validatePassword(String password, UserDetails userDetails) {
+    private boolean validatePassword(byte[] password, UserDetails userDetails) {
+
         return false;
     }
 }

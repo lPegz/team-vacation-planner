@@ -1,5 +1,7 @@
 package br.pegz.tvp.security.password;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.SecretKeyFactory;
@@ -9,6 +11,8 @@ import java.util.Base64;
 
 public class PasswordStorage
 {
+
+    public static final Charset UTF_16 = StandardCharsets.UTF_16;
 
     @SuppressWarnings("serial")
     static public class InvalidHashException extends Exception {
@@ -46,7 +50,7 @@ public class PasswordStorage
     public static final int PBKDF2_INDEX = 4;
 
 
-    public static String createHash(String password)
+    public static byte[] createHash(String password)
             throws CannotPerformOperationException {
         if (password != null) {
             return createHash(password.toCharArray());
@@ -54,7 +58,7 @@ public class PasswordStorage
         throw new IllegalArgumentException("Password must not be empty");
     }
 
-    public static String createHash(char[] password)
+    public static byte[] createHash(char[] password)
             throws CannotPerformOperationException
     {
         // Generate a random salt
@@ -74,7 +78,7 @@ public class PasswordStorage
                 toBase64(salt) +
                 ":" +
                 toBase64(hash);
-        return parts;
+        return parts.getBytes(UTF_16);
     }
 
     public static boolean verifyPassword(String password, String correctHash)

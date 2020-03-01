@@ -10,15 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class LoginAttemptLogger {
-
-
-
     @EventListener
-    public void auditEventHappened(
-            AuditApplicationEvent auditApplicationEvent) {
+    public void auditEventHappened(AuditApplicationEvent auditApplicationEvent) {
         AuditEvent auditEvent = auditApplicationEvent.getAuditEvent();
         WebAuthenticationDetails details = (WebAuthenticationDetails) auditEvent.getData().get("details");
-        log.debug("Principal {} - {} \n  Remote IP address: {} \n  Session Id: {}\n  Request Url: {}",
+        log.info("Principal {} - {} \n  Remote IP address: {} \n  Session Id: {}\n  Request Url: {}",
                 auditEvent.getPrincipal(), auditEvent.getType(), details.getRemoteAddress(),
                 details.getSessionId(), auditEvent.getData().get("requestUrl"));
 

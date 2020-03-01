@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/access")
 @RequiredArgsConstructor
-public final class UnsafeUserRegisterController {
+public final class LoginRegisterController {
 
     private final UserRegisterService userRegisterService;
     private final UserLoginService userLoginService;
