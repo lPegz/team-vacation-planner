@@ -19,8 +19,6 @@ dockerCreateDockerfile {
 	instruction """
 		RUN mkdir /keys
 		RUN cd /keys
-		RUN openssl genrsa -out tvpPrivate.pem 4096
-		RUN openssl rsa -in tvpPrivate.pem -outform PEM -pubout -out tvpPublic.pem
 		RUN keytool -genkey -alias tvpks \\
         -keyalg RSA -keystore /keys/tvpks \\
         -dname "CN=Team Vacation Planner, OU=Management, O=Free, L=New York, S=NY, C=US" \\
