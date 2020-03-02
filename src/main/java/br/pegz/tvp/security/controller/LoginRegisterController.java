@@ -21,9 +21,14 @@ public final class LoginRegisterController {
     private final UserRegisterService userRegisterService;
     private final UserLoginService userLoginService;
 
-    @PostMapping("/register")
+    @PostMapping("/team/register")
+    public ResponseEntity<ConfirmationValue> registerNewTenant(@RequestBody UserAccountValue userAccountValue) {
+        return ResponseEntity.ok(userRegisterService.registerTenant(userAccountValue));
+    }
+
+    @PostMapping("/user/register")
     public ResponseEntity<ConfirmationValue> registerNewUser(@RequestBody UserAccountValue userAccountValue) {
-        return ResponseEntity.ok(userRegisterService.registerNewUser(userAccountValue));
+        return ResponseEntity.ok(userRegisterService.registerTenant(userAccountValue));
     }
 
     @PostMapping("/authenticate")

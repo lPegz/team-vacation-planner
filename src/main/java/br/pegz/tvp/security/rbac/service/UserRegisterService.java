@@ -6,6 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserRegisterService extends UserDetailsService {
 
-    ConfirmationValue registerNewUser(UserAccountValue userAccountValue);
+    ConfirmationValue registerTenant(UserAccountValue userAccountValue);
 
 }

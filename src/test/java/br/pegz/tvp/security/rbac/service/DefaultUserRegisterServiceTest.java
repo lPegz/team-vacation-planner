@@ -2,14 +2,12 @@ package br.pegz.tvp.security.rbac.service;
 
 import br.pegz.tvp.security.rbac.model.UserAccount;
 import br.pegz.tvp.security.rbac.model.repository.UserAccountRepository;
-import br.pegz.tvp.security.rbac.model.value.ConfirmationValue;
 import br.pegz.tvp.security.rbac.model.value.UserAccountValue;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,7 +32,7 @@ class DefaultUserRegisterServiceTest {
         when(mockRepository.save(any(UserAccount.class))).thenReturn(mockUserAccount);
         UserAccountValue validUserAccountVRequest = new UserAccountValue("Carnivorous Vulgaris",
                 "wile.e.coyote", "wcoyote@acme.com", "i<3rrunner");
-        defaultUserRegisterService.registerNewUser(validUserAccountVRequest);
+        defaultUserRegisterService.registerTenant(validUserAccountVRequest);
         verify(mockRepository, atMostOnce()).save(any(UserAccount.class));
     }
 
@@ -43,7 +41,7 @@ class DefaultUserRegisterServiceTest {
         assertThrows(IllegalArgumentException.class, () -> {
             UserAccountValue validUserAccountVRequest = new UserAccountValue("Carnivorous Vulgaris",
                     "wile.e.coyote", "wcoyote@acme.com", null);
-            defaultUserRegisterService.registerNewUser(validUserAccountVRequest);
+            defaultUserRegisterService.registerTenant(validUserAccountVRequest);
         });
     }
 

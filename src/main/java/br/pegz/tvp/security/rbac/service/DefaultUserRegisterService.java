@@ -31,7 +31,7 @@ public class DefaultUserRegisterService implements UserRegisterService, UserLogi
     private final JWTUtil jwtUtil;
 
     @Override
-    public ConfirmationValue registerNewUser(UserAccountValue userAccountValue) {
+    public ConfirmationValue registerTenant(UserAccountValue userAccountValue) {
         UserAccount userAccount = getUserAccount(userAccountValue);
         UserAccount created = userAccountRepository.save(userAccount);
         return new ConfirmationValue(created.getUsername(), created.getTeamName());
