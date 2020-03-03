@@ -5,6 +5,8 @@ services:
         restart: always
         environment:
           - MONGO_DATA_DIR=/data/db
+          - MONGO_INITDB_ROOT_USERNAME=tvp_admin
+          - MONGO_INITDB_ROOT_PASSWORD=greattvp
         ports:
           - 27017:27017
         networks:

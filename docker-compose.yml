@@ -15,7 +15,7 @@ services:
     depends_on:
       - tvp-mongo
     ports:
-    - "8001:8080"
+    - "8365:8365"
     networks:
       localbridge:
         aliases:
