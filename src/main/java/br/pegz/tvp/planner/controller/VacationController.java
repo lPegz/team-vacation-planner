@@ -16,7 +16,7 @@ public class VacationController {
         this.vacationService = vacationService;
     }
 
-    @PostMapping("/vacation/{teamUid}/{memberId}")
+    @PostMapping("/{teamUid}/{memberId}/vacation")
     public ResponseEntity<VacationValue> addNewVacation(
             @RequestBody VacationRequest vacationRequest, @RequestParam String teamUid, @RequestParam String memberId) {
 

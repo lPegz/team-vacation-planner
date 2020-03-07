@@ -24,4 +24,4 @@ jobs:
     - name: Integration Test
       run: ./gradlew integrationTest
     - name: Push Docker Image to Repository
-      run: ./gradlew pushImageToECR
+      run: ./gradlew dockerPushImage
