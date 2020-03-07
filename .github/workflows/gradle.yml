@@ -26,5 +26,5 @@ jobs:
     - name: Publish Image to Docker Hub Repository
       if: success()
       run: |
-        docker login --password ${{ secrets.dockerSecret }} ${{ secrets.dockerUser }}
+        docker login ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
         ./gradlew dockerPushImage
