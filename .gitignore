@@ -2,6 +2,9 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+### TVP FE ###
+src/main/resources/static/js
+
 ### STS ###
 .apt_generated
 .classpath
