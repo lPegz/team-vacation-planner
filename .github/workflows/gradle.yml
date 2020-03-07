@@ -27,6 +27,6 @@ jobs:
       if: success()
       uses: manusa/actions-publish-docker@master
       with:
-        name: organization/image_name
+        name: teamvacationplanner/team-vacation-planner
         username: ${{ secrets.dockerUser }}
         password: ${{ secrets.dockerSecret }}
