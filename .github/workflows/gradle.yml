@@ -25,7 +25,7 @@ jobs:
       run: ./gradlew integrationTest
     - name: Publish Image to Docker Hub Repository
       if: success()
-      uses: manusa/actions-publish-docker@master
+      run: docker login ${{ secrets.dockerUser }} --password-stdin ${{ secrets.dockerSecret }}
       with:
         name: teamvacationplanner/team-vacation-planner
         username: ${{ secrets.dockerUser }}
