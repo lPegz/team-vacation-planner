@@ -23,7 +23,7 @@ jobs:
       run: ./gradlew build
     - name: Integration Test
       run: ./gradlew integrationTest
-    - name: Dockerize
+    - name: Publish Image to Docker Hub Repository
       if: success()
       uses: manusa/actions-publish-docker@master
       with:
