@@ -25,8 +25,8 @@ jobs:
       run: ./gradlew integrationTest
     - name: Push Docker Image to Repository
       with:
-        dockerLogin: ${{ secrets.dockerLogin }}
-        dockerSecret: ${{ secrets.dockerSecret }}
+        - dockerLogin: ${{ secrets.dockerLogin }}
+        - dockerSecret: ${{ secrets.dockerSecret }}
       run: """
           docker login ${dockerLogin} ${dockerSecret}
           ./gradlew dockerPushImage
