@@ -34,6 +34,7 @@ class DefaultUserRegisterServiceTest {
                 "wile.e.coyote", "wcoyote@acme.com", "i<3rrunner");
         defaultUserRegisterService.registerTenant(validUserAccountVRequest);
         verify(mockRepository, atMostOnce()).save(any(UserAccount.class));
+
     }
 
     @Test
