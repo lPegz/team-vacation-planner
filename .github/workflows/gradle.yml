@@ -26,7 +26,3 @@ jobs:
     - name: Publish Image to Docker Hub Repository
       if: success()
       run: docker login ${{ secrets.dockerUser }} --password-stdin ${{ secrets.dockerSecret }}
-      with:
-        name: teamvacationplanner/team-vacation-planner
-        username: ${{ secrets.dockerUser }}
-        password: ${{ secrets.dockerSecret }}
