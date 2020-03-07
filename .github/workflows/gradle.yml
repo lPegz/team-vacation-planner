@@ -25,8 +25,6 @@ jobs:
       run: ./gradlew integrationTest
     - name: Publish Image to Docker Hub Repository
       if: success()
-      run:
-        """
+      run: |
           docker login --password-stdin ${{ secrets.dockerSecret }} ${{ secrets.dockerUser }}
           ./gradlew dockerPushImage
-        """
