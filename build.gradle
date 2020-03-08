@@ -95,7 +95,7 @@ docker {
 	springBootApplication {
 		baseImage = 'openjdk:11-jre-slim'
 		ports = [9090, 8365]
-		images = ["team-vacation-planner:${project.version}", 'team-vacation-planner:latest']
+		images = ["teamvacationplanner/team-vacation-planner:${project.version}", 'teamvacationplanner/team-vacation-planner:latest']
 
 		jvmArgs = ['-Dspring.profiles.active=container']
 	}
