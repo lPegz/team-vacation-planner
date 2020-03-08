@@ -27,4 +27,4 @@ jobs:
       if: success()
       run: |
         docker login ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
-        ./gradlew dockerPushImage
+        docker push team-vacation-planner
