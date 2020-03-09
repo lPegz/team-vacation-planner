@@ -26,12 +26,17 @@ jobs:
     - name: Build Image
       if: success()
       run: |
+        ./gradlew dockerCreateDockerfile
         ./gradlew dockerBuildImage
     - name: Push to Hub
       if: success()
-      uses: zenato/docker-action@master
-      with:
-        username: ${{ secrets.dockerUser }}
-        password: ${{ secrets.dockerSecret }}
-        repository: teamvacationplanner/team-vacation-planner
-        tag: latest
+      uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.dockerUser }}
+          PASSWORD: ${{ secrets.dockerSecret }}
+          IMAGE_NAME: "teamvacationplanner/team-vacation-planner"
+          BUILD_PATH: build/docker/Dockerfile
+          TAG_NAME: "ci"
+          LATEST: "true"
