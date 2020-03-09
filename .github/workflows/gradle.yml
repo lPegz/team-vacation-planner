@@ -28,15 +28,6 @@ jobs:
       run: |
         ./gradlew dockerCreateDockerfile
         ./gradlew dockerBuildImage
-    - name: Push to Hub
-      if: success()
-      uses: opspresso/action-docker@master
-      with:
-        args: --docker
-      env:
-        USERNAME: ${{ secrets.dockerUser }}
-        PASSWORD: ${{ secrets.dockerSecret }}
-        IMAGE_NAME: "teamvacationplanner/team-vacation-planner"
-        BUILD_PATH: ./build/docker/
-        TAG_NAME: "ci"
-        LATEST: "true"
+        docker login -u ${{ secrets.dockerUser }}
+        ${{ secrets.dockerSecret }}
+        docker push teamvacationplanner/team-vacation-planner
