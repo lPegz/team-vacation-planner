@@ -37,6 +37,6 @@ jobs:
         USERNAME: ${{ secrets.dockerUser }}
         PASSWORD: ${{ secrets.dockerSecret }}
         IMAGE_NAME: "teamvacationplanner/team-vacation-planner"
-        BUILD_PATH: /github/workspace/build/docker/
+        BUILD_PATH: ./build/docker/
         TAG_NAME: "ci"
         LATEST: "true"
