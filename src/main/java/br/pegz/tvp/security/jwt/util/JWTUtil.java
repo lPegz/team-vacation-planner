@@ -13,11 +13,11 @@ import java.security.interfaces.RSAPublicKey;
 @RequiredArgsConstructor
 public class JWTUtil {
 
-    private final RSAPublicKey rsaPublicKey;
-
-    private final RSAPrivateKey rsaPrivateKey;
+    private final KeyService keyService;
 
     public String generateJwt(String teamname, String username) {
+        RSAPublicKey rsaPublicKey = keyService.getPublic(teamname);
+        RSAPrivateKey rsaPrivateKey = keyService.getPrivate(teamname);
         Algorithm alg = Algorithm.RSA512(rsaPublicKey, rsaPrivateKey);
         return JWT.create()
                 .withClaim("team", teamname)
