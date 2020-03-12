@@ -19,6 +19,7 @@ jobs:
         run: |
         docker pull teamvacationplanner/team-vacation-planner:latest
         docker logout
+
       - name: Docker Logout and Login into ECR
         run: |
         docker login -u ${{ secrets.ecrAccessKey }} --password ${{ secrets.ecrSecretKey }}  ${{ secrets.ecrLoginUrl }}
