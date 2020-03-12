@@ -1,4 +1,4 @@
-name: Java CI
+name: PR Builder
 
 on:
   pull_request:
@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-    
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK
@@ -30,3 +28,4 @@ jobs:
         ./gradlew dockerBuildImage
         docker login -u ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
         docker push teamvacationplanner/team-vacation-planner
+        docker logout
