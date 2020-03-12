@@ -1,4 +1,4 @@
-name: Java CI
+name: PR Builder
 
 on:
   pull_request:
@@ -8,12 +8,10 @@ on:
 
 jobs:
   build:
-    
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
+    - name: Set up JDK
       uses: actions/setup-java@v1
       with:
         java-version: 11
@@ -23,5 +21,11 @@ jobs:
       run: ./gradlew build
     - name: Integration Test
       run: ./gradlew integrationTest
-    - name: Push Docker Image to Repository
-      run: ./gradlew pushImageToECR
+    - name: Build Image
+      if: success()
+      run: |
+        ./gradlew dockerCreateDockerfile
+        ./gradlew dockerBuildImage
+        docker login -u ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
+        docker push teamvacationplanner/team-vacation-planner
+        docker logout
