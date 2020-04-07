@@ -1,0 +1,29 @@
+name: Publish new release to ECR
+
+on:
+  push:
+    tags:
+      - release/
+env:
+  TAG_ID: version
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker Login
+        run: docker login -u ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
+      - name: Docker Pull
+        run: docker pull teamvacationplanner/team-vacation-planner:latest
+      - name: Docker Logout
+        run: docker logout
+      - name: ECR
+        with:
+          ecrAccessKey: ${{ secrets.ecrAccessKey }}
+          ecrSecretKey: ${{ secrets.ecrSecretKey }}
+          ecrLoginUrl: ${{ secrets.ecrLoginUrl }}
+          ecrRepo: ${{ secrets.ecrRepo }}
+        run: |
+          docker login -u $ecrAccessKey --password $ecrSecretKey $ecrLoginUrl
+          docker push $ecrRepo/team-vacation-planner:latest
+          docker logout
