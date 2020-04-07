@@ -8,8 +8,6 @@ env:
   TAG_ID: version
 
 jobs:
-  gettag:
-    runs-on: ubuntu-latest
   publish:
     runs-on: ubuntu-latest
     steps:
