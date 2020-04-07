@@ -1,10 +1,10 @@
 package br.pegz.tvp.security.jwt.util;
 
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 
 public interface KeyService {
-    PublicKey addKey(String tenant);
-    PublicKey getPublic(String tenant);
-    PrivateKey getPrivate(String tenant);
+    RSAPublicKey addKey(String tenant);
+    RSAPublicKey getPublic(String tenant);
+    RSAPrivateKey getPrivate(String tenant);
 }

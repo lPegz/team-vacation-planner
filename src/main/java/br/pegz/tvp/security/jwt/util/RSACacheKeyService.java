@@ -36,6 +36,9 @@ public class RSACacheKeyService implements KeyService {
 
     @Cacheable("publicKey")
     public RSAPublicKey getPublic(String tenant) {
+        if(keypairMap.get(tenant) == null) {
+            addKey(tenant);
+        }
         return (RSAPublicKey) keypairMap.get(tenant).getPublic();
     }
 

@@ -50,7 +50,7 @@ public class PasswordStorage
     public static final int PBKDF2_INDEX = 4;
 
 
-    public static byte[] createHash(String password)
+    public static String createHash(String password)
             throws CannotPerformOperationException {
         if (password != null) {
             return createHash(password.toCharArray());
@@ -58,7 +58,7 @@ public class PasswordStorage
         throw new IllegalArgumentException("Password must not be empty");
     }
 
-    public static byte[] createHash(char[] password)
+    public static String createHash(char[] password)
             throws CannotPerformOperationException
     {
         // Generate a random salt
@@ -78,7 +78,7 @@ public class PasswordStorage
                 toBase64(salt) +
                 ":" +
                 toBase64(hash);
-        return parts.getBytes(UTF_16);
+        return parts;
     }
 
     public static boolean verifyPassword(String password, String correctHash)

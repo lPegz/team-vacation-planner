@@ -29,3 +29,4 @@ jobs:
         docker login -u ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
         docker push teamvacationplanner/team-vacation-planner
         docker logout
+
