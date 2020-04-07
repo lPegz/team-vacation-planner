@@ -1,6 +1,5 @@
 package br.pegz.tvp.planner.model;
 
-import br.pegz.tvp.planner.model.enums.Impact;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
