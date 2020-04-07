@@ -8,30 +8,24 @@ env:
   TAG_ID: version
 
 jobs:
-  build:
+  gettag:
+    runs-on: ubuntu-latest
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew build
-      - name: Integration Test
-        run: ./gradlew integrationTest
-      - name: Build Image
-        if: success()
+      - name: Docker Login
+        run: docker login -u ${{ secrets.dockerUser }} --password ${{ secrets.dockerSecret }}
+      - name: Docker Pull
+        run: docker pull teamvacationplanner/team-vacation-planner:latest
+      - name: Docker Logout
+        run: docker logout
+      - name: ECR
         with:
           ecrAccessKey: ${{ secrets.ecrAccessKey }}
           ecrSecretKey: ${{ secrets.ecrSecretKey }}
           ecrLoginUrl: ${{ secrets.ecrLoginUrl }}
           ecrRepo: ${{ secrets.ecrRepo }}
         run: |
-          ./gradlew dockerCreateDockerfile
-          ./gradlew dockerBuildImage
           docker login -u $ecrAccessKey --password $ecrSecretKey $ecrLoginUrl
           docker push $ecrRepo/team-vacation-planner:latest
           docker logout
