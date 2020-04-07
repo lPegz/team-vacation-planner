@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
@@ -42,12 +43,12 @@ public class DefaultUserRegisterService implements UserRegisterService, UserLogi
         UserAccount userAccount;
         String tenantId = UUID.nameUUIDFromBytes(userAccountValue.getTeamName().getBytes()).toString();
         try {
-            byte[] passwordHash = PasswordStorage.createHash(userAccountValue.getPassword());
+            String passwordHash = PasswordStorage.createHash(userAccountValue.getPassword());
             userAccount = UserAccount.builder()
                     .tenantId(tenantId)
                     .teamName(userAccountValue.getTeamName())
-                    .passwordSalt(passwordHash)
-                    .password(Arrays.toString(passwordHash))
+                    .passwordSalt(passwordHash.getBytes(Charset.defaultCharset()))
+                    .password(passwordHash)
                     .accountNonExpired(true)
                     .accountNonLocked(true)
                     .credentialsNonExpired(true)
