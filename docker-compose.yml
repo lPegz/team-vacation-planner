@@ -1,19 +1,19 @@
-version: '2'
+version: '2.1'
 services:
-  tvp-mongo:
+  tvp-localstack:
     extends:
-      file: src/main/docker/db.yml
-      service: db
+      file: src/main/docker/localstack.yml
+      service: localstack
     networks:
       localbridge:
         aliases:
-            - tvp-mongo
-            - tvp-mongo.tvp.com
+            - localstack
+            - localstack.tvp.com
   tvp-app:
     image: team-vacation-planner:latest
-    build: build/docker
+    #build: build/docker
     depends_on:
-      - tvp-mongo
+      - tvp-localstack
     ports:
     - "8365:8365"
     networks:

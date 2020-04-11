@@ -18,13 +18,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableDynamoDBRepositories(basePackages = {"br.pegz.tvp.security.rbac.model.repository", "br.pegz.tvp.planner.repository"} )
 public class DynamoDatasourceConfiguration {
 
-    @Value("${amazon.aws.accesskey}")
+    @Value("${amazon.aws.accesskey:localstack}")
     private String amazonAWSAccessKey;
 
-    @Value("${amazon.aws.secretkey}")
+    @Value("${amazon.aws.secretkey:localstack}")
     private String amazonAWSSecretKey;
 
-    @Bean
     public AWSCredentialsProvider amazonAWSCredentialsProvider() {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
     }
