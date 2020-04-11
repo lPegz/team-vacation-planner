@@ -20,7 +20,7 @@ public class MemberController {
     }
 
     public ResponseEntity<MemberValue> createMember(@RequestBody MemberValue memberValue) {
-        memberRepository.insert(new Member(UUID.randomUUID().toString(),
+        memberRepository.save(new Member(UUID.randomUUID().toString(),
                 memberValue.getTeamId(), memberValue.getName(), new HashSet<>()));
         return ResponseEntity.ok(memberValue);
     }

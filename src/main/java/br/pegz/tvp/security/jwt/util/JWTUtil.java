@@ -1,6 +1,5 @@
 package br.pegz.tvp.security.jwt.util;
 
-import com.auth0.jwk.Jwk;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import lombok.RequiredArgsConstructor;
