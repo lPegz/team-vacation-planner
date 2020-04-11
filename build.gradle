@@ -84,7 +84,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	testCompile group: 'cloud.localstack', name: 'localstack-utils', version: '0.2.1'
+	testImplementation group: 'cloud.localstack', name: 'localstack-utils', version: '0.2.1'
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	integrationTestImplementation 'org.spockframework.spock:spock-core:spock-1.3'
