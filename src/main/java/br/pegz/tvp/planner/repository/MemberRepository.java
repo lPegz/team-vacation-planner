@@ -1,8 +1,8 @@
 package br.pegz.tvp.planner.repository;
 
 import br.pegz.tvp.planner.model.Member;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface MemberRepository extends MongoRepository<Member, String> {
+public interface MemberRepository extends PagingAndSortingRepository<Member, String> {
 
 }
