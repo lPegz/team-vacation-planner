@@ -13,6 +13,7 @@ import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRep
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackages = {"br.pegz.tvp.security.rbac.model.repository", "br.pegz.tvp.planner.repository"} )
@@ -38,6 +39,7 @@ public class DynamoDatasourceConfiguration {
         return DynamoDBMapperConfig.DEFAULT;
     }
 
+    @Primary
     @Bean
     public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB, DynamoDBMapperConfig config) {
         return new DynamoDBMapper(amazonDynamoDB, config);

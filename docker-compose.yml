@@ -10,7 +10,7 @@ services:
             - localstack
             - localstack.tvp.com
   tvp-app:
-    image: team-vacation-planner:latest
+    image: teamvacationplanner/team-vacation-planner
     #build: build/docker
     depends_on:
       - tvp-localstack
