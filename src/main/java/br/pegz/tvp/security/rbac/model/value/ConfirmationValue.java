@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value
 public class ConfirmationValue {
-    private final String username;
-    private final String teamName;
+    String username;
+    String teamName;
 }

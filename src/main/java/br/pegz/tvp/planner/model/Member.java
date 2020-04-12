@@ -1,5 +1,7 @@
 package br.pegz.tvp.planner.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,8 +17,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class Member {
     @Id
-    private final String uid;
-    private final String teamId;
-    private final String name;
-    private final Set<Vacation> vacations;
+    @DynamoDBHashKey
+    String uid;
+    @DynamoDBRangeKey
+    String teamId;
+    String name;
+    Set<Vacation> vacations;
 }

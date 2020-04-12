@@ -29,11 +29,11 @@ public class DynamoDatasourceConfiguration {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
     }
 
-    @Bean
     public AWSCredentials amazonAWSCredentials() {
         return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
     }
 
+    @Primary
     @Bean
     public DynamoDBMapperConfig dynamoDBMapperConfig() {
         return DynamoDBMapperConfig.DEFAULT;
@@ -45,6 +45,7 @@ public class DynamoDatasourceConfiguration {
         return new DynamoDBMapper(amazonDynamoDB, config);
     }
 
+    @Primary
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard().withCredentials(amazonAWSCredentialsProvider())

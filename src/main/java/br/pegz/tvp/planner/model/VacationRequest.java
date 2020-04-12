@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class VacationRequest {
-    private final String memberName;
-    private final String memberEmail;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    String memberName;
+    String memberEmail;
+    LocalDate startDate;
+    LocalDate endDate;
 }

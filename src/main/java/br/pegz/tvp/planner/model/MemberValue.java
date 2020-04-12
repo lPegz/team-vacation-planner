@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value
 public class MemberValue {
-    private final String teamId;
-    private final String name;
+    String teamId;
+    String name;
 }
