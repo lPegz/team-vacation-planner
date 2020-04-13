@@ -7,7 +7,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
@@ -16,7 +15,6 @@ import java.util.Set;
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class Member {
-    @Id
     @DynamoDBHashKey
     String uid;
     @DynamoDBRangeKey

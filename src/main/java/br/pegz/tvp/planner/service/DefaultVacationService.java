@@ -1,11 +1,9 @@
 package br.pegz.tvp.planner.service;
 
-import br.pegz.tvp.planner.model.MemberValue;
-import br.pegz.tvp.planner.model.Vacation;
-import br.pegz.tvp.planner.model.VacationRequest;
-import br.pegz.tvp.planner.model.VacationValue;
+import br.pegz.tvp.planner.model.*;
 import br.pegz.tvp.planner.model.enums.Status;
-import br.pegz.tvp.planner.repository.VacationRepository;
+import br.pegz.tvp.planner.repository.MemberRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -16,17 +14,20 @@ import java.util.UUID;
 @Component
 public class DefaultVacationService implements VacationService {
 
-    private final VacationRepository vacationRepository;
+    private final MemberRepository memberRepository;
 
-    public DefaultVacationService(VacationRepository vacationRepository) {
-        this.vacationRepository = vacationRepository;
+    public DefaultVacationService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Override
     public VacationValue addNewVacation(MemberValue member, VacationRequest vacationRequest) {
         Vacation vacation = new Vacation(UUID.randomUUID().toString(), Year.from(vacationRequest.getStartDate()),
                 "0", Status.WAITING_APPROVAL, vacationRequest.getStartDate(), vacationRequest.getEndDate());
-        vacationRepository.save(vacation);
+        Member foundMember = memberRepository.findByNameAndTeamId(member.getName(), member.getTeamId())
+                .orElseThrow(IllegalArgumentException::new);
+        foundMember.getVacations().add(vacation);
+        memberRepository.save(foundMember);
         return new VacationValue(member.getName(), member.getTeamId(), vacationRequest.getStartDate(), vacationRequest.getEndDate());
     }
 

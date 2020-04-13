@@ -4,6 +4,7 @@ import br.pegz.tvp.planner.model.MemberValue;
 import br.pegz.tvp.planner.model.VacationRequest;
 import br.pegz.tvp.planner.model.VacationValue;
 import br.pegz.tvp.planner.service.VacationService;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class VacationController {
 
     @PostMapping("/{teamUid}/{memberId}/vacation")
     public ResponseEntity<VacationValue> addNewVacation(
-            @RequestBody VacationRequest vacationRequest, @RequestParam String teamUid, @RequestParam String memberId) {
+            @RequestBody VacationRequest vacationRequest, @RequestParam String teamUid, @RequestParam String memberId) throws ChangeSetPersister.NotFoundException {
 
         VacationValue vacationValue = vacationService.
                 addNewVacation(new MemberValue(teamUid, memberId), vacationRequest);

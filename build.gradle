@@ -47,11 +47,13 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+	implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.2.6.RELEASE'
+
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.auth0:java-jwt:3.9.0'
-	// https://mvnrepository.com/artifact/com.github.derjust/spring-data-dynamodb
-	implementation group: 'com.github.derjust', name: 'spring-data-dynamodb', version: '5.1.0'
+	implementation group: 'io.github.boostchicken', name: 'spring-data-dynamodb', version: '5.2.1'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
