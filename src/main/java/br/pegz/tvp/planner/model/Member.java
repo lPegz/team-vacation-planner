@@ -5,20 +5,22 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
+import org.springframework.data.annotation.Id;
 
 import java.util.Set;
 
 @DynamoDBTable(tableName = "member")
-@Value
+@Data
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class Member {
+    @Id
     @DynamoDBHashKey
-    String uid;
+    private String id;
     @DynamoDBRangeKey
-    String teamId;
-    String name;
-    Set<Vacation> vacations;
+    private String teamId;
+    private String name;
+    private Set<Vacation> vacations;
 }
