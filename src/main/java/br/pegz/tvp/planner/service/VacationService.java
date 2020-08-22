@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 public interface VacationService {
     VacationValue addNewVacation(MemberValue member, VacationRequest vacationRequest) throws ChangeSetPersister.NotFoundException;
-    VacationValue updateVacation(MemberValue member, VacationRequest vacationRequest);
-    void removeVacation(VacationValue vacation);
-    Page<VacationValue> listVacationPerPeriod(LocalDate startPeriod, LocalDate endPeriod, int pageSize, int currentPage);
+    void nullVacation(VacationValue vacation);
+    Page<VacationValue> listVacationPerPeriod(String teamId, LocalDate startPeriod, LocalDate endPeriod, int pageSize, int currentPage);
 }

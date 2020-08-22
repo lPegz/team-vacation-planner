@@ -19,8 +19,8 @@ public class VacationController {
 
     @PostMapping("/{teamUid}/{memberId}/vacation")
     public ResponseEntity<VacationValue> addNewVacation(
-            @RequestBody VacationRequest vacationRequest, @RequestParam String teamUid, @RequestParam String memberId) throws ChangeSetPersister.NotFoundException {
-
+            @RequestBody VacationRequest vacationRequest, @PathVariable String teamUid,
+            @PathVariable String memberId) throws ChangeSetPersister.NotFoundException {
         VacationValue vacationValue = vacationService.
                 addNewVacation(new MemberValue(teamUid, memberId), vacationRequest);
         return ResponseEntity.ok(vacationValue);
