@@ -21,7 +21,6 @@ public class Member {
     String teamId;
     String name;
     Set<Vacation> vacations;
-
     @DynamoDBHashKey(attributeName = "teamId")
     public String getUsername() {
         return memberId != null ? memberId.getTeamId() : null;
@@ -29,5 +28,21 @@ public class Member {
     @DynamoDBRangeKey(attributeName = "username")
     public String getTeamId() {
         return memberId != null ?  memberId.getUsername() : null;
+    }
+
+    public void setUsername(String username) {
+        createIdNull();
+        memberId.setUsername(username);
+    }
+
+    private void createIdNull() {
+        if (memberId == null) {
+            memberId = new MemberId();
+        }
+    }
+
+    public void setTeamId(String teamId) {
+        createIdNull();
+        memberId.setTeamId(teamId);
     }
 }

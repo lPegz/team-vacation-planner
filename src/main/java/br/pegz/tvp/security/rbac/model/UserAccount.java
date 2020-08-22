@@ -35,4 +35,19 @@ public class UserAccount implements UserDetails {
         return userAccountId != null ?  userAccountId.getTeamId() : null;
     }
 
+    public void setUsername(String username) {
+        createIdNull();
+        userAccountId.setUsername(username);
+    }
+
+    private void createIdNull() {
+        if (userAccountId == null) {
+            userAccountId = new UserAccountId();
+        }
+    }
+
+    public void setTeamId(String teamId) {
+        createIdNull();
+        userAccountId.setTeamId(teamId);
+    }
 }

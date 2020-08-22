@@ -10,6 +10,6 @@ import java.util.Optional;
 @EnableScan
 public interface UserAccountRepository extends PagingAndSortingRepository<UserAccount, UserAccountId> {
 
-    Optional<UserAccount> findByTeamNameAndUsername(String teamName, String username);
+    Optional<UserAccount> findByTeamIdAndUsername(String teamId, String username);
 
 }

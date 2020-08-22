@@ -59,7 +59,7 @@ public class DefaultUserRegisterService implements UserRegisterService, UserLogi
     }
 
     public Optional<UserAccount> loadUserByUsernameAndTeam(String username, String teamName) {
-        return userAccountRepository.findByTeamNameAndUsername(teamName, username);
+        return userAccountRepository.findByTeamIdAndUsername(teamName, username);
     }
 
     @Deprecated
