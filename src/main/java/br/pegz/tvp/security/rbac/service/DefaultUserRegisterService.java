@@ -8,6 +8,7 @@ import br.pegz.tvp.security.login.model.AuthenticationRequest;
 import br.pegz.tvp.security.login.model.AuthenticationResponse;
 import br.pegz.tvp.security.password.PasswordStorage;
 import br.pegz.tvp.security.rbac.model.UserAccount;
+import br.pegz.tvp.security.rbac.model.UserAccountId;
 import br.pegz.tvp.security.rbac.model.repository.UserAccountRepository;
 import br.pegz.tvp.security.rbac.model.value.ConfirmationValue;
 import br.pegz.tvp.security.rbac.model.value.UserAccountValue;
@@ -35,17 +36,15 @@ public class DefaultUserRegisterService implements UserRegisterService, UserLogi
     public ConfirmationValue registerTenant(UserAccountValue userAccountValue) {
         UserAccount userAccount = getUserAccount(userAccountValue);
         UserAccount created = userAccountRepository.save(userAccount);
-        return new ConfirmationValue(created.getUsername(), created.getTeamName());
+        return new ConfirmationValue(created.getUsername(), created.getTeamId());
     }
 
     private UserAccount getUserAccount(UserAccountValue userAccountValue) throws IllegalArgumentException {
         UserAccount userAccount;
-        String tenantId = UUID.nameUUIDFromBytes(userAccountValue.getTeamName().getBytes()).toString();
         try {
             String passwordHash = PasswordStorage.createHash(userAccountValue.getPassword());
             userAccount = UserAccount.builder()
-                    .tenantId(tenantId)
-                    .teamName(userAccountValue.getTeamName())
+                    .userAccountId(new UserAccountId(userAccountValue.getTeamName(), userAccountValue.getUsername()))
                     .passwordSalt(passwordHash.getBytes(Charset.defaultCharset()))
                     .password(passwordHash)
                     .accountNonExpired(true)
