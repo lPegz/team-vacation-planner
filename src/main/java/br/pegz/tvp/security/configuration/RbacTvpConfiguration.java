@@ -22,11 +22,13 @@ public class RbacTvpConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/register", "/authenticate", "/actuator/*")
-                .permitAll()
-                .anyRequest().authenticated();
+        http.authorizeRequests()
+                .antMatchers("/access/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/*").hasAnyRole("ADMIN", "USER")
+                .and().formLogin()
+                .and().logout().logoutSuccessUrl("/login").permitAll()
+                .and().csrf().disable();
     }
 
     @Bean

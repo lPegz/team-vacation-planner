@@ -1,8 +1,10 @@
 package br.pegz.tvp.security.rbac.model;
 
+import br.pegz.tvp.security.rbac.model.converter.RoleToStringConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +18,13 @@ import java.util.Set;
 @Builder
 public class UserAccount implements UserDetails {
     @Id
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     UserAccountId userAccountId;
     String password;
     byte[] passwordSalt;
     String email;
+    @DynamoDBTypeConverted(converter = RoleToStringConverter.class)
     Set<Role> authorities;
     boolean accountNonExpired;
     boolean accountNonLocked;

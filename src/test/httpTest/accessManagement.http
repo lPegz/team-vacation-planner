@@ -1,0 +1,8 @@
+POST http://localhost:8080/access/team/register
+Content-Type: application/json
+
+{
+  "teamName": "testTeam", "username": "testUser", "email":"testUser@acme.com","password":"test123"
+}
+
+###

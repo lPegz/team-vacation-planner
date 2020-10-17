@@ -28,7 +28,7 @@ class DefaultUserRegisterServiceTest {
     void whenRegisterNewUserSuccess() {
         UserAccount mockUserAccount = mock(UserAccount.class);
         when(mockUserAccount.getUsername()).thenReturn("wile.e.coyote");
-        when(mockUserAccount.getTeamName()).thenReturn("Carnivorous Vulgaris");
+        when(mockUserAccount.getTeamId()).thenReturn("Carnivorous Vulgaris");
         when(mockRepository.save(any(UserAccount.class))).thenReturn(mockUserAccount);
         UserAccountValue validUserAccountVRequest = new UserAccountValue("Carnivorous Vulgaris",
                 "wile.e.coyote", "wcoyote@acme.com", "i<3rrunner");
