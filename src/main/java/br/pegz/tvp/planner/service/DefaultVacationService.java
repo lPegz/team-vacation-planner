@@ -6,11 +6,11 @@ import br.pegz.tvp.planner.model.VacationRequest;
 import br.pegz.tvp.planner.model.VacationValue;
 import br.pegz.tvp.planner.model.enums.Status;
 import br.pegz.tvp.planner.repository.VacationRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.Year;
+import java.util.Collection;
 import java.util.UUID;
 
 @Component
@@ -41,7 +41,7 @@ public class DefaultVacationService implements VacationService {
     }
 
     @Override
-    public Page<VacationValue> listVacationPerPeriod(LocalDate startPeriod, LocalDate endPeriod, int pageSize, int currentPage) {
+    public Collection<VacationValue> listVacationPerPeriod(LocalDate startPeriod, LocalDate endPeriod, int pageSize, int currentPage) {
         return null;
     }
 }

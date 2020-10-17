@@ -29,7 +29,7 @@ class MemberControllerTest {
     void createMember() {
         MemberValue memberValue = new MemberValue("og-looney-tunes", "wile.e.coyote");
         ResponseEntity<MemberValue> response = memberController.createMember(memberValue);
-        verify(memberRepository).insert(any(Member.class));
+        verify(memberRepository).save(any(Member.class));
         assertNotNull(response.getBody());
         assertNotNull(response.getStatusCode());
         assertTrue(response.getStatusCode().is2xxSuccessful());
